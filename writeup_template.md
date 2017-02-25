@@ -12,17 +12,23 @@ cv2.GaussianBlur(img, (kernel_size, kernel_size), 0)
 II. Then we apply the Canny Edge Detection 
 cv2.Canny(img, low_threshold, high_threshold)
 
+The Canny edge takes a low and high threshold which detects a minimum difference in intensity to detect edge and creates a continous extension of an edge.
+
 III. Region of Interest: Not all of the edges are important to us, so we apply a function that masks out most of the image and only retain the bottom part of the road in view.
 
 
 Then we calculate a Left Region of Interest and Right Region of Interest
 
 
-IV. Hough Transform Now we convert the pixel dots that were detected as edges into lines. 
+IV. Hough Transform We retrieve Hough Lines by converting the pixel dots that were detected as edges into lines. 
 
 cv2.HoughLinesP(img, rho, theta, threshold, np.array([]), minLineLength=min_line_len, maxLineGap=max_line_gap)
-V. Superimpose lane lines on the test images
 
+The Hough Transform, which took the most amount of time to perform, takes a resolution for line position and orientation, a min number of pts for a line, the min length of a line and the max gap between pts in a line.
+
+This pipeline was effective in obtain lines along both sides of the lanes.
+
+V. Apply  lane lines on the test images. 
 Then we overlap the detected lines on the test images. In order to draw a single line on both the left and right lanes, I modified the draw lines function by:
 
 1. Calculated slope and center of each line — then based on the slope, sort it into left or right.
