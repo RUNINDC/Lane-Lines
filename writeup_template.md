@@ -28,3 +28,7 @@ Then we overlap the detected lines on the test images. In order to draw a single
 1. Calculated slope and center of each line — then based on the slope, sort it into left or right.
 2. Calculate the avg. slope and the center of left and right lane
 3. Then using the Y coordinates from ROI, determine the X coordinates using the avg. slope and center point of lane lines.
+
+Shortcomings: There are potential shortcomings. The ROI is static so it can only be used in specific scenarios. Additionally, the slope conditions used for determining lanes do not work for curved roads.
+
+Improvements: modify the mask selection to be dynamic so that it can work in many different scenarios. Adjust the slope conditions so that they can work on curved roads.
